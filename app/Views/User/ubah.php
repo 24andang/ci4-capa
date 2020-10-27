@@ -49,7 +49,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Tambah Data Capa</button>
+                <button type="submit" class="btn btn-primary">Ubah Data User</button>
                 <button type="reset" class="btn btn-danger">Ulangi</button>
             </div>
         </div>

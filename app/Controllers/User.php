@@ -12,12 +12,20 @@ class User extends BaseController
     protected $userModel;
     protected $deptModel;
     protected $validasi;
+    protected $enkripsi;
+    protected $config;
+
 
     public function __construct()
     {
+        $this->config         = new \Config\Encryption();
+        // $this->config->key    = 'aBigsecret_ofAtleast32Characters';
+        // $this->config->driver = 'OpenSSL';
+
         $this->userModel = new UserModel();
         $this->deptModel = new DepartemenModel();
         $this->validasi = \Config\Services::validation();
+        $this->enkripsi = \Config\Services::encrypter($this->config);
     }
 
     public function index()
@@ -35,6 +43,9 @@ class User extends BaseController
 
     public function login()
     {
+        // $dekripPass = $this->enkripsi->decrypt(base64_decode('CpEcV0nZouEfaxmoNpPzpmCuFDH/YiwNVop1XyoJd8WNOhxXG+uZKheCVie790bWlXL+U7R1h8ID+ehPal+uNMkOQqH5YFl9mi+NlmM3QS1gUAc=d'), 'jjjj');
+
+
         $id = $this->request->getVar('id');
         $password = $this->request->getVar('password');
         $dataUser = $this->userModel->find($id);
@@ -42,7 +53,9 @@ class User extends BaseController
             'title' => 'Capaweb Login Page'
         ];
 
+
         $user = $this->userModel->getUser($id);
+        $dekripsiPassword = $this->enkripsi->decrypt(base64_decode($user['password']));
         $newdata = [
             'id'  => $user['id'],
             'level' => $user['level'],
@@ -51,7 +64,7 @@ class User extends BaseController
         ];
 
         if ($dataUser) {
-            if ($dataUser['password'] == $password) {
+            if ($dekripsiPassword == $password) {
                 session()->set($newdata);
                 return redirect()->to('/capa');
             } else {
@@ -104,10 +117,11 @@ class User extends BaseController
 
     public function save()
     {
+        $password = base64_encode($this->enkripsi->encrypt($this->request->getVar('password')));
         $data = [
             'id' => $this->request->getVar('id'),
             'nama' => $this->request->getVar('nama'),
-            'password' => $this->request->getVar('password'),
+            'password' => $password,
             'departemen' => $this->request->getVar('departemen'),
             'level' => $this->request->getVar('level'),
         ];
@@ -131,10 +145,11 @@ class User extends BaseController
 
     public function update()
     {
+        $password = base64_encode($this->enkripsi->encrypt($this->request->getVar('password')));
         $data = [
             'id' => $this->request->getVar('id'),
             'nama' => $this->request->getVar('nama'),
-            'password' => $this->request->getVar('password'),
+            'password' => $password,
             'departemen' => $this->request->getVar('departemen'),
             'level' => $this->request->getVar('level'),
         ];
@@ -172,8 +187,10 @@ class User extends BaseController
     public function updatepassword()
     {
         $id = $this->request->getVar('id');
+        $user = $this->userModel->getUser($id);
+        $password_lama = $this->enkripsi->decrypt(base64_decode($user['password']));
         $passwordLama = $this->request->getVar('passwordlama');
-        $passwordBaru = $this->request->getVar('passwordbaru');
+        $passwordBaru = base64_encode($this->enkripsi->encrypt($this->request->getVar('passwordbaru')));;
 
         $user = $this->userModel->getUser($id);
 
@@ -189,7 +206,7 @@ class User extends BaseController
         //     return redirect()->to('/user/ubahpassword/' . $id)->withInput();
         // }
 
-        if ($passwordLama !== $user['password']) {
+        if ($passwordLama !== $password_lama) {
             session()->setFlashdata('item', 'Password lama tidak sama');
             return redirect()->to('/user/ubahpassword/' . $id)->withInput();
         } elseif ($passwordBaru == '') {
