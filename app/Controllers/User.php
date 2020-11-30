@@ -89,6 +89,7 @@ class User extends BaseController
             return redirect()->to('/user');
         }
 
+        $currentPage = $this->request->getVar('page_user') ? $this->request->getVar('page_user') : 1;
         $keyword = $this->request->getVar('keyword');
 
         if ($keyword) {
@@ -99,7 +100,9 @@ class User extends BaseController
 
         $data = [
             'title' => 'Data User',
-            'user' => $this->userModel->getUser()
+            'user' => $this->userModel->paginate(5, 'user'),
+            'pager' => $this->userModel->pager,
+            'currentPage' => $currentPage
         ];
 
         return view('/user/user', $data);
@@ -137,7 +140,8 @@ class User extends BaseController
         $data = [
             'title' => 'Ubah Info User',
             'user' => $this->userModel->getUser($id),
-            'dept' => $this->deptModel->getDept()
+            'dept' => $this->deptModel->getDept(),
+            'enkripsi' => $this->enkripsi
         ];
 
         return view('/user/ubah', $data);

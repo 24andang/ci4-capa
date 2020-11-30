@@ -30,13 +30,16 @@ class Capa extends BaseController
         $keyword = $this->request->getVar("keyword");
 
         $userLoggedIn = $this->userModel->getUser(session()->get('id'));
+        $sumber = $this->request->getVar('sumber');
 
         if ($keyword) {
             $capa = $this->capaModel->search($keyword);
+        } elseif ($sumber) {
+            $capa = $this->capaModel->searchBySumber($sumber);
         } elseif (session()->get('level') == 2) {
             $capa = $this->capaModel;
         } else {
-            $capa = $this->capaModel->getCapaByDept($userLoggedIn['departemen']);
+            $capa = $this->capaModel->getCapaByDept($userLoggedIn['departemen'])->searchBySumber('bpom');
         }
 
         $data = [
@@ -44,6 +47,7 @@ class Capa extends BaseController
             'capa' => $capa->paginate(5, 'capa'),
             'pager' => $capa->pager,
             'currentPage' => $currentPage,
+            'sumber' => $sumber
         ];
 
         return view('capa/index', $data);
@@ -87,6 +91,7 @@ class Capa extends BaseController
 
         $data = [
             'temuan' => $this->request->getVar('temuan'),
+            'sumber' => $this->request->getVar('sumber'),
             'kt' => $this->request->getVar('kt'),
             'persyaratan' => $this->request->getVar('persyaratan'),
             'kondisi' => $this->request->getVar('kondisi'),

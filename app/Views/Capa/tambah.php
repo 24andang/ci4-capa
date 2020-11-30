@@ -11,6 +11,20 @@
     </ul>
     <form action="/capa/save" method="post" enctype="multipart/form-data">
         <div class="form-group row">
+            <label for="kt" class="col-sm-2 col-form-label">Sumber</label>
+            <div class="col-sm-10 form-group">
+                <select class="form-control" id="sumber" name="sumber">
+                    <option value="bpom">Audit Balai / Badan POM</option>
+                    <option value="auditInternal">Audit Internal</option>
+                    <option value="pengkajianMutu">Pengkajian Mutu</option>
+                    <option value="nonConformance">Non Conformance</option>
+                    <option value="penangananKeluhan">Penanganan Keluhan</option>
+                    <option value="analisisResiko">Analisis Resiko</option>
+                    <option value="lainLain">Lain-lain</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="temuan" class="col-sm-2 col-form-label">Temuan</label>
             <div class="col-sm-10 form-group">
                 <textarea rows="3" class="form-control" id="temuan" name="temuan"></textarea>

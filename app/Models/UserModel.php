@@ -12,7 +12,8 @@ class UserModel extends Model
         'id',
         'password',
         'nama',
-        'departemen'
+        'departemen',
+        'level'
     ];
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

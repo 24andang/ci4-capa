@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item <?= $title == 'Capaweb' ? 'active' : ''; ?>">
-                <a class="nav-link" href="/capa">Home</a>
+                <a class="nav-link" href="/capa">Capa</a>
             </li>
             <li class="nav-item" <?= session()->get('level') == 0 ? 'hidden' : ''; ?>>
                 <a class="nav-link <?= $title == 'Data User' ? 'active' : ''; ?>" href="/user/user">

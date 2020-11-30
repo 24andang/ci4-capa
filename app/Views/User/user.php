@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
+                    <?php $i = 1 + (5 * $currentPage) - 5; ?>
                     <?php foreach ($user as $u) : ?>
                         <tr class="">
                             <th scope="row"><?= $i++; ?></th>
@@ -56,6 +56,7 @@
             </table>
         </div>
     </div>
+    <?= $pager->links('user', 'bootstrap_paginasi'); ?>
 </div>
 
 <?= $this->endSection(); ?>

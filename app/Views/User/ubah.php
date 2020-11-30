@@ -24,7 +24,7 @@
         <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10 form-group">
-                <input type="password" class="form-control" id="password" name="password" value="<?= $user['password']; ?>"></input>
+                <input type="password" class="form-control" id="password" name="password" value="<?= $enkripsi->decrypt(base64_decode($user['password'])); ?>"></input>
             </div>
         </div>
         <div class="form-group row">
@@ -41,9 +41,9 @@
             <label for="level" class="col-sm-2 col-form-label">Level</label>
             <div class="col-sm-10 form-group">
                 <select class="form-control" id="level" name="level">
-                    <option value="<?= $user['level']; ?>" <?= $user['level'] == 0 ? 'selected' : '' ?>>Member</option>
-                    <option value="<?= $user['level']; ?>" <?= $user['level'] == 1 ? 'selected' : '' ?>>Admin</option>
-                    <option value="<?= $user['level']; ?>" <?= $user['level'] == 2 ? 'selected' : '' ?>>Super Admin</option>
+                    <option value="0" <?= $user['level'] == 0 ? 'selected' : '' ?>>Member</option>
+                    <option value="1" <?= $user['level'] == 1 ? 'selected' : '' ?>>Admin</option>
+                    <option value="2" <?= $user['level'] == 2 ? 'selected' : '' ?>>Super Admin</option>
                 </select>
             </div>
         </div>

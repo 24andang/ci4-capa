@@ -10,6 +10,7 @@ class CapaModel extends Model
     protected $table      = 'capa';
     protected $allowedFields = [
         'temuan',
+        'sumber',
         'kt',
         'persyaratan',
         'kondisi',
@@ -50,5 +51,10 @@ class CapaModel extends Model
     public function search($keyword)
     {
         return $this->table('capa')->like('temuan', $keyword);
+    }
+
+    public function searchBySumber($sumber)
+    {
+        return $this->table('capa')->like('sumber', $sumber);
     }
 }
