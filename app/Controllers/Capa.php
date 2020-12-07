@@ -19,27 +19,36 @@ class Capa extends BaseController
     }
 
 
-    public function index()
+    public function index($export = 0, $sumber = 'bpom')
     {
         if (session()->has('logged_in') == false) {
             return redirect()->to('/user');
         }
-
         // dd(session()->get('departemen'));
         $currentPage = $this->request->getVar('page_capa') ? $this->request->getVar('page_capa') : 1;
         $keyword = $this->request->getVar("keyword");
 
         $userLoggedIn = $this->userModel->getUser(session()->get('id'));
-        $sumber = $this->request->getVar('sumber');
+        // $sumber = $this->request->getVar('sumber');
 
         if ($keyword) {
-            $capa = $this->capaModel->search($keyword);
+            $capa = $this->capaModel->search($keyword, $sumber);
         } elseif ($sumber) {
             $capa = $this->capaModel->searchBySumber($sumber);
         } elseif (session()->get('level') == 2) {
             $capa = $this->capaModel;
         } else {
             $capa = $this->capaModel->getCapaByDept($userLoggedIn['departemen'])->searchBySumber('bpom');
+        }
+
+        if ($export == 1) {
+            // Kode export 1 untuk excel
+            $data = [
+                'title' => 'Capaweb',
+                'capa' => $capa->getCapa()
+            ];
+
+            return view('/capa/excel', $data);
         }
 
         $data = [

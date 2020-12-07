@@ -48,13 +48,15 @@ class CapaModel extends Model
         return $this->where('ca_departemen', $departemen);
     }
 
-    public function search($keyword)
+    public function search($keyword, $sumber)
     {
-        return $this->table('capa')->like('temuan', $keyword);
+        return $this->table('capa')
+            ->where('sumber', $sumber)
+            ->like('temuan', $keyword);
     }
 
     public function searchBySumber($sumber)
     {
-        return $this->table('capa')->like('sumber', $sumber);
+        return $this->table('capa')->where('sumber', $sumber);
     }
 }
