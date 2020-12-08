@@ -6,7 +6,7 @@
     <h1 class="my-3">Detail</h1>
     <ul class="nav justify-content-end my-2">
         <li class="nav-item">
-            <a class="nav-link mx-1" href="/capa">Kembali</a>
+            <a class="nav-link mx-1" href="/capa/index/0/<?= $capa['sumber']; ?>">Kembali</a>
         </li>
     </ul>
     <div class="row mx-lg-n5">

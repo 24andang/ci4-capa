@@ -58,26 +58,26 @@
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <div class="row mx-auto">
-                <div class="col-3">
-                    <a href="/capa/index/0/bpom" class="<?= $sumber == 'bpom' ? 'font-weight-bolder' : 'text-secondary'; ?>">Audit Badan / Balai POM</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/bpom" class="<?= $sumber == 'bpom' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Audit Badan / Balai POM</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/auditInternal" class="<?= $sumber == 'auditInternal' ? 'font-weight-bolder' : 'text-secondary'; ?>">Audit Internal</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/auditInternal" class="<?= $sumber == 'auditInternal' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Audit Internal</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/pengkajianMutu" class="<?= $sumber == 'pengkajianMutu' ? 'font-weight-bolder' : 'text-secondary'; ?>">Pengkajian Mutu</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/pengkajianMutu" class="<?= $sumber == 'pengkajianMutu' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Pengkajian Mutu</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/nonConformance" class="<?= $sumber == 'nonConformance' ? 'font-weight-bolder' : 'text-secondary'; ?>">Non Conformance</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/nonConformance" class="<?= $sumber == 'nonConformance' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Non Conformance</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/penangananKeluhan" class="<?= $sumber == 'penangananKeluhan' ? 'font-weight-bolder' : 'text-secondary'; ?>">Penanganan Keluhan</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/penangananKeluhan" class="<?= $sumber == 'penangananKeluhan' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Penanganan Keluhan</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/analisisResiko" class="<?= $sumber == 'analisisResiko' ? 'font-weight-bolder' : 'text-secondary'; ?>">Analisis Resiko</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/analisisResiko" class="<?= $sumber == 'analisisResiko' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Analisis Resiko</a>
                 </div>
-                <div class="col-3">
-                    <a href="/capa/index/0/lainLain" class="<?= $sumber == 'lainLain' ? 'font-weight-bolder' : 'text-secondary'; ?>">Lain-lain</a>
+                <div class="col-3 my-1">
+                    <a href="/capa/index/0/lainLain" class="<?= $sumber == 'lainLain' ? 'font-weight-bolder text-info' : 'text-secondary'; ?>">Lain-lain</a>
                 </div>
             </div>
         </div>

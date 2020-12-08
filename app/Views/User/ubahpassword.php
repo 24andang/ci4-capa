@@ -5,12 +5,20 @@
     <h1 class="my-3">Form Ubah Data User</h1>
     <ul class="nav justify-content-end my-2">
         <li class="nav-item">
-            <a class="nav-link mx-1" href="/user/user">Kembali</a>
+            <a class="nav-link mx-1" href="/user">Kembali</a>
         </li>
     </ul>
-    <div class="alert alert-danger" role="alert">
-        <?= session()->getFlashdata('item'); ?>
-    </div>
+
+    <?php
+    if (null != session()->getFlashdata('item')) {
+        echo "<div class='alert alert-danger' role='alert'>";
+        echo session()->getFlashdata('item');
+        echo "</div>";
+    }
+    ?>
+
+
+
     <form action="/user/updatepassword" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="id" class="col-sm-2 col-form-label">ID</label>
@@ -28,6 +36,12 @@
             <label for="passwordbaru" class="col-sm-2 col-form-label">Password Baru</label>
             <div class="col-sm-10 form-group">
                 <input type="password" class="form-control" id="passwordbaru" name="passwordbaru"></input>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="passwordbarukonfirm" class="col-sm-2 col-form-label">Konfirmasi Password Baru</label>
+            <div class="col-sm-10 form-group">
+                <input type="password" class="form-control" id="passwordbarukonfirm" name="passwordbarukonfirm"></input>
             </div>
         </div>
         <div class="form-group row">

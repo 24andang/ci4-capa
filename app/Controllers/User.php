@@ -194,8 +194,11 @@ class User extends BaseController
         $user = $this->userModel->getUser($id);
         $password_lama = $this->enkripsi->decrypt(base64_decode($user['password']));
         $passwordLama = $this->request->getVar('passwordlama');
-        $passwordBaru = base64_encode($this->enkripsi->encrypt($this->request->getVar('passwordbaru')));;
+        $passwordBaru1 = $this->request->getVar('passwordbaru');
+        $passwordBaru2 = $this->request->getVar('passwordbarukonfirm');
 
+
+        $passwordBaru = base64_encode($this->enkripsi->encrypt($passwordBaru1));
         $user = $this->userModel->getUser($id);
 
         // if (!$this->validate([
@@ -211,10 +214,13 @@ class User extends BaseController
         // }
 
         if ($passwordLama !== $password_lama) {
-            session()->setFlashdata('item', 'Password lama tidak sama');
+            session()->setFlashdata('item', 'Password lama salah.');
             return redirect()->to('/user/ubahpassword/' . $id)->withInput();
-        } elseif ($passwordBaru == '') {
-            session()->setFlashdata('item', 'Masukan password baru');
+        } elseif ($passwordBaru1 == '' || $passwordBaru2 == '') {
+            session()->setFlashdata('item', 'Password baru atau konfirmasi password belum terisi.');
+            return redirect()->to('/user/ubahpassword/' . $id)->withInput();
+        } elseif ($passwordBaru1 !== $passwordBaru2) {
+            session()->setFlashdata('item', 'Konfirmasi password tidak sama.');
             return redirect()->to('/user/ubahpassword/' . $id)->withInput();
         }
 

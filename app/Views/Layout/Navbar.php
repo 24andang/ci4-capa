@@ -23,7 +23,7 @@
                     <?= session()->get('id'); ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <form action="user/ubahpassword" method="post">
+                    <form action="/user/ubahpassword" method="post">
                         <input type="hidden" name="id" value="<?= session()->get('id'); ?>">
                         <button class="dropdown-item" type="submit" <?= $title == 'Ubah Password' ? 'disabled' : ''; ?>>Ubah Password</button>
                     </form>

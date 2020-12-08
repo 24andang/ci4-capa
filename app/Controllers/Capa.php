@@ -98,9 +98,11 @@ class Capa extends BaseController
             $fotoPa->move('img', $namaFotoPa);
         }
 
+        $sumber = $this->request->getVar('sumber');
+
         $data = [
             'temuan' => $this->request->getVar('temuan'),
-            'sumber' => $this->request->getVar('sumber'),
+            'sumber' => $sumber,
             'kt' => $this->request->getVar('kt'),
             'persyaratan' => $this->request->getVar('persyaratan'),
             'kondisi' => $this->request->getVar('kondisi'),
@@ -123,7 +125,7 @@ class Capa extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan');
 
         $this->capaModel->save($data);
-        return redirect()->to('/capa');
+        return redirect()->to('/capa/index/0/' . $sumber);
     }
 
 
@@ -139,9 +141,11 @@ class Capa extends BaseController
             unlink('img/' . $paGbr);
         }
 
+        $sumber = $capa['sumber'];
+
         $this->capaModel->delete($id);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
-        return redirect()->to('/capa');
+        return redirect()->to('/capa/index/0/' . $sumber);
     }
 
     public function update($id)
@@ -194,8 +198,10 @@ class Capa extends BaseController
         ];
         $this->capaModel->save($data);
 
+        $sumber = $capa['sumber'];
+
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('/capa');
+        return redirect()->to('/capa/index/0/' . $sumber);
     }
 
     public function about()
