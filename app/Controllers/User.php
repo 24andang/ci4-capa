@@ -147,7 +147,7 @@ class User extends BaseController
         return view('/user/ubah', $data);
     }
 
-    public function update()
+    public function update($id)
     {
         $password = base64_encode($this->enkripsi->encrypt($this->request->getVar('password')));
         $data = [
@@ -158,7 +158,7 @@ class User extends BaseController
             'level' => $this->request->getVar('level'),
         ];
 
-        $this->userModel->save($data);
+        $this->userModel->update($id, $data);
         session()->setFlashdata('item', 'Data User Berhasil Diubah.');
 
         return redirect()->to('/user/user');

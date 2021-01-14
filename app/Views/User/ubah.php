@@ -8,7 +8,7 @@
             <a class="nav-link mx-1" href="/user/user">Kembali</a>
         </li>
     </ul>
-    <form action="/user/update" method="post" enctype="multipart/form-data">
+    <form action="/user/update/<?= $user['id']; ?>" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="id" class="col-sm-2 col-form-label">ID</label>
             <div class="col-sm-10 form-group">
